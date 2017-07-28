@@ -49,7 +49,7 @@ open class MGHelpView: UIView {
     public var selectCompletionBlock:(() ->())!
     
     
-    init()
+    public init()
     {
         super.init(frame: CGRect.zero)
         let view = UIApplication.shared.keyWindow
