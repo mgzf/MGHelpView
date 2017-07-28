@@ -70,7 +70,7 @@ open class MGHelpView: UIView {
         }) 
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -179,7 +179,7 @@ open class MGHelpView: UIView {
     }
     
     /*! 点击取消显示 */
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
          UIView.animate(withDuration: 0.5, animations: {
             self.alpha = 0
             }, completion: { (finished) in
