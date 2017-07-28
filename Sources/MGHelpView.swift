@@ -30,9 +30,9 @@ open class MGHelpView: UIView {
     public var spotlightType:SpotlightType = .spotlightTypeEllipse
     
     /*! 黑色半透明背景 */
-    var shapeLayer:CAShapeLayer!
+    public var shapeLayer:CAShapeLayer!
     /*! 显示的提示文字 */
-    var textImageView:UIImageView!
+    public var textImageView:UIImageView!
     
     let screenWidth = UIScreen.main.bounds.width
     let screenHeight = UIScreen.main.bounds.height
