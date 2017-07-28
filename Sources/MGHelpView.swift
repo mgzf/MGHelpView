@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MGHelpView: UIView {
+open class MGHelpView: UIView {
     
     public enum SpotlightType {
         case spotlightTypeRect //长方形
