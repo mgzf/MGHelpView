@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RenterHelpView: UIView {
+class MGHelpView: UIView {
     static let KEY_HelpView = "RenterHelpView"
     
     enum SpotlightType {
@@ -33,21 +33,6 @@ class RenterHelpView: UIView {
     let screenWidth = UIScreen.main.bounds.width
     let screenHeight = UIScreen.main.bounds.height
     
-    
-    //判断是否需要显示引导
-    class  func isShouldDisplayWithVersion(_ version:String) -> Bool {
-        let string = version.components(separatedBy: "_").first
-        if let infoDictionary = Bundle.main.infoDictionary,
-            let version = infoDictionary["CFBundleShortVersionString"] as? String
-        {
-            if !version.hasPrefix(string!) {
-                return false;
-            }
-        }
-        
-        let key = KEY_HelpView + version
-        return !UserDefaults.standard.bool(forKey: key)
-    }
     
     //设置已经显示过引导
     class  func setDisplayForVersion(_ version:String) {
@@ -213,8 +198,9 @@ class RenterHelpView: UIView {
             }
         }) 
     }
-    
-    
+}
+
+extension MGHelpView{
 
     /**
      添加通用的引导页 通过view确定位置*
@@ -233,7 +219,7 @@ class RenterHelpView: UIView {
                                            tagString:String,
                                            completion: (() -> Void)?){
         let rect = displayView.convert(displayView.bounds, to: UIApplication.shared.keyWindow)
-        RenterHelpView.addHelpViewWithDisplayView(rect, spotlightType: spotlightType, textImageName: textImageName, textLocationType: textLocationType, tagString: tagString, completion: completion)
+        addHelpViewWithDisplayView(rect, spotlightType: spotlightType, textImageName: textImageName, textLocationType: textLocationType, tagString: tagString, completion: completion)
     }
     
     /**
@@ -252,18 +238,19 @@ class RenterHelpView: UIView {
                                            textLocationType:TextLocationType?,
                                            tagString:String,
                                            completion: (() -> Void)?){
-        if RenterHelpView.isShouldDisplayWithVersion(tagString) {
-            let helpView = RenterHelpView()
+        if !UserDefaults.standard.bool(forKey: tagString) {
+            let helpView = MGHelpView()
             if spotlightType != nil {
                 helpView.spotlightType = spotlightType!
             }
             let rect = displayViewRect
             helpView.addMaskWithViewRect(rect)
-            let image = UIImage(named: textImageName)
-            helpView.textImageView.image = image
-            helpView.textImageView.frame = helpView.rectForTextImage(rect, textLocationType: textLocationType)
+            if let image = UIImage(named: textImageName) {
+                helpView.textImageView.image = image
+                helpView.textImageView.frame = helpView.rectForTextImage(rect, textLocationType: textLocationType)
+            }
             helpView.selectCompletionBlock = completion
-            RenterHelpView.setDisplayForVersion(tagString)
+            MGHelpView.setDisplayForVersion(tagString)
         }
     }
 }
