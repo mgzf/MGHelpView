@@ -8,23 +8,23 @@
 
 import UIKit
 
+public enum SpotlightType {
+    case spotlightTypeRect //长方形
+    case spotlightTypeEllipse //椭圆形
+}
+
+public enum TextLocationType {
+    case left //聚光灯左边
+    case right //聚光灯右边
+    case top //聚光灯上边
+    case bottom//聚光灯下边
+    case topLeft //聚光灯左上角
+    case topRight //聚光灯右上角
+    case bottomLeft //聚光灯左下角
+    case bottomRight //聚光灯右下角
+}
+
 open class MGHelpView: UIView {
-    
-    public enum SpotlightType {
-        case spotlightTypeRect //长方形
-        case spotlightTypeEllipse //椭圆形
-    }
-    
-    public enum TextLocationType {
-        case left //聚光灯左边
-        case right //聚光灯右边
-        case top //聚光灯上边
-        case bottom//聚光灯下边
-        case topLeft //聚光灯左上角
-        case topRight //聚光灯右上角
-        case bottomLeft //聚光灯左下角
-        case bottomRight //聚光灯右下角
-    }
     
     /*! 聚光灯样式 */
     public var spotlightType:SpotlightType = .spotlightTypeEllipse
