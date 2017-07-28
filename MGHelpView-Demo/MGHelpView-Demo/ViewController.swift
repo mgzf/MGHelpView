@@ -18,7 +18,8 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        MGHelpView.addHelpViewWithDisplayView(self.button, spotlightType: nil, textImageName: "", textLocationType: nil, tagString: "1.0_aaa", completion: nil)
+        MGHelpView.addHelpViewWithDisplayView(self.button, spotlightType: SpotlightType.spotlightTypeRect
+            , textImageName: "addBillHelp", textLocationType: TextLocationType.bottomLeft, tagString: "1.0_aaa", completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
