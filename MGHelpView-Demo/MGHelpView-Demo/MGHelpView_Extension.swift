@@ -26,6 +26,8 @@
 
 import UIKit
 
+let KEY_HelpView = "MGHelpView"
+
 extension MGHelpView{
     
     /**
@@ -93,6 +95,13 @@ extension MGHelpView{
         
         let key = KEY_HelpView + version
         return !UserDefaults.standard.bool(forKey: key)
+    }
+    
+    //设置已经显示过引导
+    class  func setDisplayForVersion(_ version:String) {
+        let key = KEY_HelpView + version
+        UserDefaults.standard.set(true, forKey: key)
+        UserDefaults.standard.synchronize()
     }
     
     /**

@@ -9,14 +9,13 @@
 import UIKit
 
 class MGHelpView: UIView {
-    static let KEY_HelpView = "RenterHelpView"
     
-    enum SpotlightType {
+    public enum SpotlightType {
         case spotlightTypeRect //长方形
         case spotlightTypeEllipse //椭圆形
     }
     
-    enum TextLocationType {
+    public enum TextLocationType {
         case left //聚光灯左边
         case right //聚光灯右边
         case top //聚光灯上边
@@ -28,34 +27,26 @@ class MGHelpView: UIView {
     }
     
     /*! 聚光灯样式 */
-    var spotlightType:SpotlightType = .spotlightTypeEllipse
-    
-    let screenWidth = UIScreen.main.bounds.width
-    let screenHeight = UIScreen.main.bounds.height
-    
-    
-    //设置已经显示过引导
-    class  func setDisplayForVersion(_ version:String) {
-        let key = KEY_HelpView + version
-        UserDefaults.standard.set(true, forKey: key)
-        UserDefaults.standard.synchronize()
-    }
-    
-    /*! 聚光灯View */
-    var displayView:UIView?{
-        didSet{
-            let rect = displayView?.convert((displayView?.bounds)!, to: self.superview)
-            addMaskWithViewRect(rect!)
-        }
-    }
+    public var spotlightType:SpotlightType = .spotlightTypeEllipse
     
     /*! 黑色半透明背景 */
     var shapeLayer:CAShapeLayer!
     /*! 显示的提示文字 */
     var textImageView:UIImageView!
     
+    let screenWidth = UIScreen.main.bounds.width
+    let screenHeight = UIScreen.main.bounds.height
+    
+    /*! 聚光灯View */
+    public var displayView:UIView?{
+        didSet{
+            let rect = displayView?.convert((displayView?.bounds)!, to: self.superview)
+            addMaskWithViewRect(rect!)
+        }
+    }
+    
     /*! 点击图片的回调 */
-    var selectCompletionBlock:(() ->())!
+    public var selectCompletionBlock:(() ->())!
     
     
     init()
@@ -212,7 +203,7 @@ extension MGHelpView{
      - tagString: 标记
      - completion: 取消显示后的回调
      */
-    class  func addHelpViewWithDisplayView(_ displayView:UIView,
+    public class  func addHelpViewWithDisplayView(_ displayView:UIView,
                                            spotlightType:SpotlightType?,
                                            textImageName:String,
                                            textLocationType:TextLocationType?,
@@ -232,7 +223,7 @@ extension MGHelpView{
      - tagString: 标记
      - completion: 取消显示后的回调
      */
-    class  func addHelpViewWithDisplayView(_ displayViewRect:CGRect,
+    public class  func addHelpViewWithDisplayView(_ displayViewRect:CGRect,
                                            spotlightType:SpotlightType?,
                                            textImageName:String,
                                            textLocationType:TextLocationType?,
@@ -250,7 +241,7 @@ extension MGHelpView{
                 helpView.textImageView.frame = helpView.rectForTextImage(rect, textLocationType: textLocationType)
             }
             helpView.selectCompletionBlock = completion
-            MGHelpView.setDisplayForVersion(tagString)
+            UserDefaults.standard.set(true, forKey: tagString)
         }
     }
 }
