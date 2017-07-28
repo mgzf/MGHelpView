@@ -37,7 +37,7 @@ extension MGHelpView{
      - spotlightType: 聚光灯类型
      - textImageName: 说明性文字图片名字
      - textLocationType: 显示的位置  不传的话会默认显示出来适合的位置
-     - versionString: 标记
+     - versionString: 标记  和版本做关联
      - completion: 取消显示后的回调
      */
     class  func addHelpViewWithDisplayView(_ displayView:UIView,
@@ -71,11 +71,10 @@ extension MGHelpView{
             if spotlightType != nil {
                 helpView.spotlightType = spotlightType!
             }
-            let rect = displayViewRect
-            helpView.addMaskWithViewRect(rect)
+            helpView.addMaskWithViewRect(displayViewRect)
             if let image = UIImage(named: textImageName) {
                 helpView.textImageView.image = image
-                helpView.textImageView.frame = helpView.rectForTextImage(rect, textLocationType: textLocationType)
+                helpView.textImageView.frame = helpView.rectForTextImage(displayViewRect, textLocationType: textLocationType)
             }
             helpView.selectCompletionBlock = completion
             setDisplayForVersion(versionString)

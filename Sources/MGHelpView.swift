@@ -52,9 +52,10 @@ open class MGHelpView: UIView {
     public init()
     {
         super.init(frame: CGRect.zero)
-        let view = UIApplication.shared.keyWindow
-        self.frame = (view?.bounds)!
-        view?.addSubview(self)
+        if let view = UIApplication.shared.keyWindow {
+            self.frame = view.bounds
+            view.addSubview(self)
+        }
         isUserInteractionEnabled = true
         shapeLayer = CAShapeLayer();
         shapeLayer.fillColor = UIColor.black.cgColor;
@@ -75,7 +76,7 @@ open class MGHelpView: UIView {
     }
 
     /*! 添加聚光灯啦 */
-    func addMaskWithViewRect(_ rect:CGRect){
+    public func addMaskWithViewRect(_ rect:CGRect){
         self.shapeLayer.path = nil;
         let maskPath = CGMutablePath()
         let transform = CGAffineTransform.identity
@@ -95,7 +96,7 @@ open class MGHelpView: UIView {
     
     
     /*! 获得文字提示显示的位置 */
-    func rectForTextImage(_ rect:CGRect, textLocationType:TextLocationType?) -> CGRect{
+    public func rectForTextImage(_ rect:CGRect, textLocationType:TextLocationType?) -> CGRect{
         var type = textLocationType
         var imageRect = CGRect.zero
         let image = self.textImageView.image!
