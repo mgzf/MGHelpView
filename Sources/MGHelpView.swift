@@ -1,9 +1,9 @@
 //
-//  RenterHelpView.swift
-//  MogoRenter
+//  HelpView.swift
+//  MGHelpView
 //
 //  Created by song on 16/6/13.
-//  Copyright © 2016年 MogoRoom. All rights reserved.
+//  Copyright © 2016年 Song. All rights reserved.
 //
 
 import UIKit
